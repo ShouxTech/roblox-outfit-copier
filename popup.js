@@ -96,8 +96,8 @@ copyOutfitBtn.onclick = async () => {
     const startPos = url.search(PROFILE_PREFIX);
     const endPos = url.search('/profile');
 
-    if (!startPos || !endPos) {
-        statusText.innerText = 'Invalid profile.';
+    if ((startPos == -1) || (endPos == -1)) {
+        statusText.innerText = 'Invalid Roblox profile.';
         return;
     };
 

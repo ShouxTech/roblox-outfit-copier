@@ -1,6 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,900&display=swap');
+
 body {
     background-color: rgb(25, 25, 25);
     color: white;
+    font-family: 'Roboto', sans-serif;
+}
+
+#title {
+    font-family: 'Roboto', sans-serif;
+    font-style: italic;
+    font-weight: 900;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+#status-text {
+    text-align: center;
+    margin-top: 1px;
+    margin-bottom: 0;
+}
+
+#credits {
+    font-family: 'Roboto', sans-serif;
+    font-size: 10px;
+    text-align: center;
+    color: rgb(200, 200, 200);
 }
 
 #copy-outfit-btn {
@@ -13,4 +38,6 @@ body {
     background-color: rgb(40, 40, 40);
     color: white;
     cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    font-size: 17px;
 }

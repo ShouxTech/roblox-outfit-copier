@@ -6,6 +6,9 @@
     
     "manifest_version": 3,
     "minimum_chrome_version": "96",
+    "icons": {
+        "128": "res/icon_128.png"
+    },
     
     "permissions": ["storage", "tabs", "cookies"],
     "host_permissions": [
