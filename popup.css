@@ -1,0 +1,16 @@
+body {
+    background-color: rgb(25, 25, 25);
+    color: white;
+}
+
+#copy-outfit-btn {
+    width: 200px;
+    height: 50px;
+    outline: none;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(40, 40, 40);
+    color: white;
+    cursor: pointer;
+}

@@ -1,0 +1,20 @@
+{
+    "name": "Roblox Outfit Copier",
+    "version": "1.0.0",
+    "description": "Copy the outfit of any Roblox user to your own avatar with the click of a button.",
+    "author": "CriShoux & Khizzer",
+    
+    "manifest_version": 3,
+    "minimum_chrome_version": "96",
+    
+    "permissions": ["storage", "tabs", "cookies"],
+    "host_permissions": [
+		"*://*.roblox.com/",
+		"*://*.rbxcdn.com/"
+	],
+
+    "action":{
+        "default_popup": "popup.html",
+        "default_title": "Roblox Outfit Copier"
+    }
+}
