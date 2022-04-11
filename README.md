@@ -6,6 +6,8 @@ Transfer items from another user's avatar onto yours!
 
 ![Image of extension](https://addons.mozilla.org/user-media/previews/thumbs/268/268347.jpg?modified=1649688282)
 
+Demonstration video: **Coming soon**
+
 Raw Links
 -----
 * Firefox: https://addons.mozilla.org/en-GB/firefox/addon/roblox-outfit-copier/
