@@ -10,3 +10,7 @@ Raw Links
 -----
 * Firefox: https://addons.mozilla.org/en-GB/firefox/addon/roblox-outfit-copier/
 * Chrome: **Coming soon**
+
+For Developers
+-----
+Check out [asset-to-bundle-api](https://github.com/DoctorPoptart/asset-to-bundle-api) by [DoctorPoptart](https://github.com/DoctorPoptart). We use it to find assets that belong to bundles because Roblox doesn't have their own method for that.
