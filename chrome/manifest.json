@@ -13,7 +13,6 @@
     "permissions": ["tabs", "cookies"],
     "host_permissions": [
 		"*://*.roblox.com/",
-		"*://*.rbxcdn.com/",
         "*://*.asset-to-bundle-api.herokuapp.com/"
 	],
 
