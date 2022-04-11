@@ -15,9 +15,17 @@ body {
     margin-bottom: 0;
 }
 
+#open-paid-items-checkbox {
+    margin-bottom: 5px;
+}
+
+#copy-skin-color-checkbox {
+    margin-bottom: 5px;
+}
+
 #status-text {
+    font-family: 'Roboto', sans-serif;
     text-align: center;
-    margin-top: 10px;
     margin-bottom: 0;
 }
 
@@ -26,13 +34,15 @@ body {
     font-size: 10px;
     text-align: center;
     color: rgb(200, 200, 200);
+    margin-top: 0;
 }
 
 #copy-outfit-btn {
+    display: block;
+    margin: auto;
     width: 200px;
     height: 50px;
     outline: none;
-    margin: 10px;
     border: none;
     border-radius: 5px;
     background-color: rgb(40, 40, 40);
