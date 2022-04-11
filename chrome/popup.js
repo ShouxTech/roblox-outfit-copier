@@ -1,6 +1,6 @@
 const copyOutfitBtn = document.getElementById('copy-outfit-btn');
 const openPaidItemsCheckbox = document.getElementById('open-paid-items-checkbox');
-const copyBodyColoursCheckbox = document.getElementById('copy-skin-colour-checkbox');
+const copyBodyColoursCheckbox = document.getElementById('copy-skin-color-checkbox');
 const statusText = document.getElementById('status-text');
 
 const PROFILE_PREFIX = 'roblox.com/users/';
