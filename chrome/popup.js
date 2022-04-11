@@ -1,4 +1,5 @@
 const copyOutfitBtn = document.getElementById('copy-outfit-btn');
+const openPaidItemsCheckbox = document.getElementById('open-paid-items-checkbox');
 const statusText = document.getElementById('status-text');
 
 const PROFILE_PREFIX = 'roblox.com/users/';
@@ -72,6 +73,7 @@ async function buyFreeAssets(assets) {
     for (const assetId of assets) {
         const bundleDetails = await isAssetPartOfBundle(assetId);
 
+        let isFree;
         let productId;
         let sellerId;
 
@@ -82,21 +84,25 @@ async function buyFreeAssets(assets) {
             const infoEndpointURL = `https://catalog.roblox.com/v1/bundles/${bundleAssetId}/details`;
             const res = await (await fetch(infoEndpointURL)).json();
 
-            const isFree = (res.product.isFree == true);
+            isFree = (res.product.isFree == true);
             productId = res.product.id;
             sellerId = res.creator.id;
-
-            if (!isFree) continue;
         } else {
             const infoEndpointURL = `https://api.roblox.com/marketplace/productinfo?assetId=${assetId}`;
             const res = await (await fetch(infoEndpointURL)).json();
 
-            const isFree = ((res.PriceInRobux === null) && !res.IsLimited && !res.IsLimitedUnique);
+            isFree = ((res.PriceInRobux === null) && !res.IsLimited && !res.IsLimitedUnique);
             productId = res.ProductId;
             sellerId = res.Creator.Id;
 
-            if (!isFree) continue;
             if (!productId) continue;
+        }
+
+        if (!isFree) {
+            if (openPaidItemsCheckbox.checked) {
+                chrome.tabs.create({ url: `https://www.roblox.com/catalog/${assetId}` });
+            }
+            continue;
         }
 
         const purchaseEndpointURL = `https://economy.roblox.com/v1/purchases/products/${productId}`;
