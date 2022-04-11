@@ -1,5 +1,6 @@
 const copyOutfitBtn = document.getElementById('copy-outfit-btn');
 const openPaidItemsCheckbox = document.getElementById('open-paid-items-checkbox');
+const copyBodyColoursCheckbox = document.getElementById('copy-skin-colour-checkbox');
 const statusText = document.getElementById('status-text');
 
 const PROFILE_PREFIX = 'roblox.com/users/';
@@ -55,6 +56,26 @@ async function setWearingAssets(assets) {
         },
         body: JSON.stringify(assets),
     });
+}
+
+async function getBodyColors(userId) {
+    const endpointURL = `https://avatar.roblox.com/v1/users/${userId}/avatar`;
+    const data = await (await fetch(endpointURL)).json();
+    return data.bodyColors;
+}
+
+async function setBodyColours(colours) {
+    const endpointURL = 'https://avatar.roblox.com/v1/avatar/set-body-colors';
+
+    const res = await fetch(endpointURL, {
+        method: 'POST',
+        headers: {
+            ...(await getPostHeaders()),
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(colours),
+    });
+    console.log(res);
 }
 
 async function isAssetPartOfBundle(assetId) {
@@ -141,6 +162,13 @@ copyOutfitBtn.onclick = async () => {
     // Get an array of the user's currently worn assets.
     statusText.innerText = 'Getting assets...';
     const wearingAssets = await getWearingAssets(userId);
+
+    if (copyBodyColoursCheckbox.checked) {
+        statusText.innerText = 'Getting body colours...';
+        const bodyColors = await getBodyColors(userId);
+        statusText.innerText = 'Setting body colours...';
+        await setBodyColours(bodyColors);
+    }
 
     // Buy any free assets that the user is wearing.
     statusText.innerText = 'Buying free assets...';
