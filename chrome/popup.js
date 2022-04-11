@@ -100,7 +100,7 @@ async function buyFreeAssets(assets) {
 
         if (!isFree) {
             if (openPaidItemsCheckbox.checked) {
-                chrome.tabs.create({ url: `https://www.roblox.com/catalog/${assetId}` });
+                chrome.tabs.create({ url: `https://www.roblox.com/catalog/${assetId}`, active: false });
             }
             continue;
         }
