@@ -13,7 +13,6 @@
         "*://*.roblox.com/",
 		"*://*.rbxcdn.com/",
         "*://*.asset-to-bundle-api.herokuapp.com/",
-        "storage",
         "tabs",
         "cookies"
     ],

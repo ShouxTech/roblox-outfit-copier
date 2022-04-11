@@ -10,7 +10,7 @@
         "128": "res/icon_128.png"
     },
     
-    "permissions": ["storage", "tabs", "cookies"],
+    "permissions": ["tabs", "cookies"],
     "host_permissions": [
 		"*://*.roblox.com/",
 		"*://*.rbxcdn.com/",
