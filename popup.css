@@ -40,4 +40,9 @@ body {
     cursor: pointer;
     font-family: 'Roboto', sans-serif;
     font-size: 17px;
+    transition-duration: 0.2s;
+}
+
+#copy-outfit-btn:hover {
+    background-color: rgb(60, 60, 60);
 }

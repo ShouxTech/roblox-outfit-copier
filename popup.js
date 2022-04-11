@@ -56,19 +56,48 @@ async function setWearingAssets(assets) {
     });
 }
 
+async function isAssetPartOfBundle(assetId) {
+    const endpointURL = `https://asset-to-bundle-api.herokuapp.com/?id=${assetId}`;
+
+    const res = await (await fetch(endpointURL)).json();
+
+    if (res.success) return res;
+
+    return false;
+}
+
 async function buyFreeAssets(assets) {
     const postHeaders = await getPostHeaders();
 
-    for (const asset of assets) {
-        const infoEndpointURL = `https://api.roblox.com/marketplace/productinfo?assetId=${asset}`;
-        const res = await (await fetch(infoEndpointURL)).json();
+    for (const assetId of assets) {
+        const bundleDetails = await isAssetPartOfBundle(assetId);
 
-        const isFree = ((res.PriceInRobux === null) && !res.IsLimited && !res.IsLimitedUnique);
-        const productId = res.ProductId;
-        const sellerId = res.Creator.Id;
+        let productId;
+        let sellerId;
 
-        if (!isFree) continue;
-        if (!productId) continue;
+        // Check if asset is a part of a bundle.
+        if (bundleDetails) {
+            const bundleAssetId = bundleDetails.bundle.id;
+
+            const infoEndpointURL = `https://catalog.roblox.com/v1/bundles/${bundleAssetId}/details`;
+            const res = await (await fetch(infoEndpointURL)).json();
+
+            const isFree = (res.product.isFree == true);
+            productId = res.product.id;
+            sellerId = res.creator.id;
+
+            if (!isFree) continue;
+        } else {
+            const infoEndpointURL = `https://api.roblox.com/marketplace/productinfo?assetId=${assetId}`;
+            const res = await (await fetch(infoEndpointURL)).json();
+
+            const isFree = ((res.PriceInRobux === null) && !res.IsLimited && !res.IsLimitedUnique);
+            productId = res.ProductId;
+            sellerId = res.Creator.Id;
+
+            if (!isFree) continue;
+            if (!productId) continue;
+        }
 
         const purchaseEndpointURL = `https://economy.roblox.com/v1/purchases/products/${productId}`;
         const purchaseRes = await fetch(purchaseEndpointURL, {
