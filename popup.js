@@ -54,7 +54,6 @@ async function setWearingAssets(assets) {
         },
         body: JSON.stringify(assets),
     });
-    console.log(await res.json());
 }
 
 async function buyFreeAssets(assets) {
