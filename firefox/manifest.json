@@ -12,7 +12,6 @@
     "permissions": [
         "*://*.roblox.com/",
         "*://*.asset-to-bundle-api.herokuapp.com/",
-        "tabs",
         "cookies"
     ],
 

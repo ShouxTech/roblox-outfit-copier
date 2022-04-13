@@ -10,7 +10,7 @@
         "128": "res/icon_128.png"
     },
     
-    "permissions": ["tabs", "cookies"],
+    "permissions": ["cookies"],
     "host_permissions": [
 		"*://*.roblox.com/",
         "*://*.asset-to-bundle-api.herokuapp.com/"
