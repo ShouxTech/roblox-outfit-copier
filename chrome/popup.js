@@ -77,36 +77,39 @@ async function setBodyColors(colors) {
     });
 }
 
-async function isAssetPartOfBundle(assetId) {
-    const endpointURL = `https://asset-to-bundle-api.herokuapp.com/?id=${assetId}`;
+async function getBundleData(assetId) {
+    const bundlesRes = await fetch(`https://catalog.roblox.com/v1/assets/${assetId}/bundles?sortOrder=Asc&limit=10`);
 
-    const res = await (await fetch(endpointURL)).json();
+    const bundles = (await bundlesRes.json()).data;
 
-    if (res.success) return res;
+    if (bundles.length == 0) return;
 
-    return false;
+    const bundle = bundles[0];
+
+    return {
+        id: bundle.product.id,
+        isFree: bundle.product.isFree,
+        creator: {
+            id: bundle.creator.id,
+        },
+    };
 }
 
 async function buyFreeAssets(assets) {
     const postHeaders = await getPostHeaders();
 
     for (const assetId of assets) {
-        const bundleDetails = await isAssetPartOfBundle(assetId);
+        const bundleData = await getBundleData(assetId);
 
         let isFree;
         let productId;
         let sellerId;
 
         // Check if asset is a part of a bundle.
-        if (bundleDetails) {
-            const bundleAssetId = bundleDetails.bundle.id;
-
-            const infoEndpointURL = `https://catalog.roblox.com/v1/bundles/${bundleAssetId}/details`;
-            const res = await (await fetch(infoEndpointURL)).json();
-
-            isFree = (res.product.isFree == true);
-            productId = res.product.id;
-            sellerId = res.creator.id;
+        if (bundleData) {
+            isFree = bundleData.isFree;
+            productId = bundleData.id;
+            sellerId = bundleData.creator.id;
         } else {
             const infoEndpointURL = `https://api.roblox.com/marketplace/productinfo?assetId=${assetId}`;
             const res = await (await fetch(infoEndpointURL)).json();

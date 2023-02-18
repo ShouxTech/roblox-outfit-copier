@@ -1,6 +1,6 @@
 {
     "name": "Roblox Outfit Copier",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Copy the outfit of any Roblox user to your own avatar with the click of a button.",
     "author": "CriShoux, Khizzer & Dr. Poptart",
 
@@ -11,7 +11,6 @@
 
     "permissions": [
         "*://*.roblox.com/",
-        "*://*.asset-to-bundle-api.herokuapp.com/",
         "cookies"
     ],
 
