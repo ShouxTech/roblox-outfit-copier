@@ -111,8 +111,8 @@ async function buyFreeAssets(assets) {
             productId = bundleData.id;
             sellerId = bundleData.creator.id;
         } else {
-            const infoEndpointURL = `https://api.roblox.com/marketplace/productinfo?assetId=${assetId}`;
-            const res = await (await fetch(infoEndpointURL)).json();
+            const infoEndpointURL = `https://economy.roblox.com/v2/developer-products/${assetId}/info`;
+            const res = await (await fetch(infoEndpointURL, {credentials: 'omit'})).json(); // Have to use {credentials: 'omit'} because of a Roblox bug.
 
             isFree = ((res.PriceInRobux === null) && !res.IsLimited && !res.IsLimitedUnique);
             productId = res.ProductId;
